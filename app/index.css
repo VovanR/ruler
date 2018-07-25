@@ -1,0 +1,73 @@
+:root {
+  --ruler-color: #eee;
+
+  --tick-width: 1px;
+  --tick-color: #9e9e9e;
+}
+
+.ruler {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: var(--ruler-color);
+}
+
+.tick {
+  width: var(--tick-width);
+  height: 100%;
+  margin-left: calc(1cm - (var(--tick-width) / 2));
+  background-color: var(--tick-color);
+  float: left;
+}
+
+/* counter */
+.ruler {
+  counter-reset: section;
+}
+
+.tick::before {
+  counter-increment: section;
+  content: counter(section);
+}
+
+/* counter style */
+.tick::before {
+  display: inline-block;
+  color: #424242;
+  font-family: monospace;
+  font-size: 3mm;
+  padding: 1mm 1mm;
+  margin-top: 2mm;
+  text-shadow: 0 calc(100vh - 3mm - 6mm);
+}
+
+/* millimeter ticks */
+.tick {
+  --o: calc(-1 * (1mm));
+  --top-mm-height: calc(-100vh + 3mm);
+  --top-5mm-height: calc(-100vh + 5mm);
+  --bottom-mm-height: calc(100vh - 3mm);
+  --bottom-5mm-height: calc(100vh - 5mm);
+  box-shadow: calc(var(--o) * 1) var(--top-mm-height) 0 #9e9e9e,
+              calc(var(--o) * 2) var(--top-mm-height) 0 #9e9e9e,
+              calc(var(--o) * 3) var(--top-mm-height) 0 #9e9e9e,
+              calc(var(--o) * 4) var(--top-mm-height) 0 #9e9e9e,
+              calc(var(--o) * 5) var(--top-5mm-height) 0 #9e9e9e, /* 5mm */
+              calc(var(--o) * 6) var(--top-mm-height) 0 #9e9e9e,
+              calc(var(--o) * 7) var(--top-mm-height) 0 #9e9e9e,
+              calc(var(--o) * 8) var(--top-mm-height) 0 #9e9e9e,
+              calc(var(--o) * 9) var(--top-mm-height) 0 #9e9e9e,
+
+              /* bottom ticks */
+              calc(var(--o) * 1) var(--bottom-mm-height) 0 #9e9e9e,
+              calc(var(--o) * 2) var(--bottom-mm-height) 0 #9e9e9e,
+              calc(var(--o) * 3) var(--bottom-mm-height) 0 #9e9e9e,
+              calc(var(--o) * 4) var(--bottom-mm-height) 0 #9e9e9e,
+              calc(var(--o) * 5) var(--bottom-5mm-height) 0 #9e9e9e, /* 5mm */
+              calc(var(--o) * 6) var(--bottom-mm-height) 0 #9e9e9e,
+              calc(var(--o) * 7) var(--bottom-mm-height) 0 #9e9e9e,
+              calc(var(--o) * 8) var(--bottom-mm-height) 0 #9e9e9e,
+              calc(var(--o) * 9) var(--bottom-mm-height) 0 #9e9e9e;
+}
